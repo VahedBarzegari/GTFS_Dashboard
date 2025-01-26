@@ -31,7 +31,7 @@ ui.tags.style(
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 60px;
+            height: 90px;
         }
 
 
@@ -43,7 +43,7 @@ ui.tags.style(
         }
 
         .logo-container img {
-            height: 40px;
+            height: 60px;
         }
 
         .title-container h2 {
@@ -52,6 +52,8 @@ ui.tags.style(
             margin: 0;
         
         }
+
+
 
 
         body {
@@ -92,7 +94,8 @@ with ui.div(class_="header-container"):
 
 ############################################
 with ui.card():
-    ui.card_header("General Information")
+    
+    ui.card_header("General Information", style="text-align: center; font-size: 24px;")
     with ui.layout_columns(col_widths={"sm": (3,3,3,3)}):
 
         with ui.value_box(
@@ -131,7 +134,7 @@ with ui.card():
 
         with ui.value_box(
             showcase=faicons.icon_svg("train-subway", width="50px"),
-            theme="bg-gradient-red-purple",
+            theme="bg-gradient-blue-purple",
         ):
             "Number of Stops"
 
