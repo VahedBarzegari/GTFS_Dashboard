@@ -97,7 +97,7 @@ with ui.card():
 
         with ui.value_box(
             showcase=faicons.icon_svg("calendar-days", width="50px"),
-            theme="bg-gradient-orange-red",
+            theme="bg-gradient-green-red",
         ):
             "Start Date"
 
@@ -119,8 +119,8 @@ with ui.card():
 
 
         with ui.value_box(
-            showcase=faicons.icon_svg("route", width="50px"),
-            theme="bg-gradient-blue-purple",
+            showcase=faicons.icon_svg("road", width="50px"),
+            theme="bg-gradient-yellow-purple",
         ):
             "Number of routes"
 
@@ -130,10 +130,10 @@ with ui.card():
             
 
         with ui.value_box(
-            showcase=faicons.icon_svg("stop", width="50px"),
-            theme="bg-gradient-blue-purple",
+            showcase=faicons.icon_svg("train-subway", width="50px"),
+            theme="bg-gradient-red-purple",
         ):
-            "Number of routes"
+            "Number of Stops"
 
             @render.ui  
             def stopfun():  
