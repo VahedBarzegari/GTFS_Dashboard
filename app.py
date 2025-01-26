@@ -56,7 +56,7 @@ ui.tags.style(
 
         body {
 
-            background-color: #ff7547;
+            background-color: #5e41aa;
         
         
         }
@@ -93,27 +93,51 @@ with ui.div(class_="header-container"):
 ############################################
 with ui.card():
     ui.card_header("General Information")
-    with ui.layout_columns(col_widths={"sm": (4,4)}):
+    with ui.layout_columns(col_widths={"sm": (3,3,3,3)}):
 
         with ui.value_box(
-            showcase=faicons.icon_svg("train-subway", width="50px"),
+            showcase=faicons.icon_svg("calendar-days", width="50px"),
             theme="bg-gradient-orange-red",
         ):
-            "Save"
+            "Start Date"
 
             @render.ui  
-            def save():  
-                return f"${(1 - 200 / 100) * 70:.1f} Billion"  
+            def datestartfun():  
+                return "12/08/2024"  
+            
 
         with ui.value_box(
-            showcase=faicons.icon_svg("hand-holding-dollar", width="50px"),
-            theme="bg-gradient-blue-purple",
+            showcase=faicons.icon_svg("calendar-days", width="50px"),
+            theme="bg-gradient-orange-red",
         ):
-            "Donate"
+            "End Date"
 
             @render.ui  
-            def donate():  
-                return f"${400 / 100 * 70:.1f} Billion"  
+            def dateendfun():  
+                return "12/12/2024"  
+            
+
+
+        with ui.value_box(
+            showcase=faicons.icon_svg("route", width="50px"),
+            theme="bg-gradient-blue-purple",
+        ):
+            "Number of routes"
+
+            @render.ui  
+            def routefun():  
+                return "213"  
+            
+
+        with ui.value_box(
+            showcase=faicons.icon_svg("stop", width="50px"),
+            theme="bg-gradient-blue-purple",
+        ):
+            "Number of routes"
+
+            @render.ui  
+            def stopfun():  
+                return "1800"  
 
 ############################################
 
