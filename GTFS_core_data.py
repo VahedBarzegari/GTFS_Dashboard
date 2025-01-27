@@ -55,6 +55,36 @@ stop_times_df = stop_times
 trips_df = trips
 shapes_df = shapes
 
+# Define a mapping for route_type values to their corresponding transportation modes
+route_type_mapping = {
+    0: "Streetcar",
+    1: "Subway",
+    2: "Rail",
+    3: "Bus",
+    4: "Ferry",
+    5: "Cable Tram",
+    6: "Aerial Lift",
+    7: "Funicular",
+    11: "Trolleybus",
+    12: "Monorail"
+}
+
+# Check if 'route_type' column exists in the 'routes' dataframe
+if 'route_type' in routes.columns:
+    # Count the occurrences of each route type
+    route_type_counts = routes['route_type'].value_counts().reset_index()
+    route_type_counts.columns = ['Mode ID', 'Number of Routes']
+
+    # Map Mode ID to Mode Name
+    route_type_counts['Mode'] = route_type_counts['Mode ID'].map(route_type_mapping)
+
+    # Drop the "Mode ID" column and reset index
+    route_type_df = route_type_counts[['Mode', 'Number of Routes']].reset_index(drop=True)
+
+    # Add Row ID starting from 1
+    route_type_df.insert(0, 'Row ID', range(1, len(route_type_df) + 1))
+
+
 
 shape_route = trips[['route_id', 'shape_id']].drop_duplicates()
 shape_route = shape_route.merge(routes[['route_id','route_type','route_color']], on='route_id', how='left')
