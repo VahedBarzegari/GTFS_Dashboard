@@ -307,4 +307,23 @@ with ui.layout_columns(col_widths={"sm": (8,4)}, height='400px'):
         ui.card_header("Explanation")
 
 
+        @render.ui
+        def dynamic_content():
+            #if input.tab() == "agency":
+            return ui.TagList(
+                ui.p("The GTFS feeds can provide valuable information."),
 
+                ui.h3("List of Feeds"),
+                ui.tags.ul(  # Unordered list for bullet points
+                    ui.tags.li("agency"),
+                    ui.tags.li("calendar"),
+                    ui.tags.li("routes"),
+                    ui.tags.li("trips"),
+                    ui.tags.li("stop_times"),
+                ),
+
+                ui.h3("More information"),
+                ui.p("Explore feeds tables or refer to ttc.ca")
+            )
+            #else:
+                #return ui.h3("kiiiiiir")
