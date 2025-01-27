@@ -146,7 +146,7 @@ with ui.card():
 ############################################
 
 with ui.layout_columns(
-    col_widths={"sm": (4, 8)}
+    col_widths={"sm": (4, 8)}, height='500px'
 ):
 
     with ui.card():
@@ -179,7 +179,7 @@ with ui.layout_columns(
         @reactive.event(input.modechoice)  # Make map reactive to selection
         def plot_network():
             # Define the mode-to-color mapping
-            mode_color_mapping = {
+            mode_color_mapping1 = {
                 "Streetcar": "#4169E1",  # Blue for Streetcar
                 "Subway": "#00FF00",     # Green for Subway
                 "Bus": "#FF0000"         # Red for Bus
@@ -204,8 +204,31 @@ with ui.layout_columns(
             # Filter data based on selection
             if selected_mode != "allmodes":
                 ax = shape_route_df[shape_route_df["modes"] == selected_mode]
+                if selected_mode == "Bus":
+                    mode_color_mapping = {
+                        "Bus": "#FF0000"
+
+
+                    }
+
+                elif selected_mode == "Subway":
+                    mode_color_mapping = {
+                        "Subway": "#00FF00"
+
+
+                    }
+
+                elif selected_mode == "Streetcar":
+                    mode_color_mapping = {
+                        "Streetcar": "#4169E1"
+
+
+                    }
+
             else:
                 ax = shape_route_df
+                mode_color_mapping = mode_color_mapping1
+
 
             ax = ax.sort_values(by='modes')
 
@@ -233,111 +256,55 @@ with ui.layout_columns(
             return m
 
 
-with ui.layout_columns(col_widths={"sm": (8,4)}, height='500px'):
-
-
+with ui.layout_columns(col_widths={"sm": (8,4)}, height='400px'):
 
     with ui.navset_card_underline(id="tab", placement='above', title="GTFS Feeds"):
 
-        
-
         with ui.nav_panel("agency"): 
-
             with ui.card():
-                
-
                 @render.data_frame
                 def sample_sales_data1():
-                        
-                    return render.DataGrid(agency_df.head(100), selection_mode="row", filters=True)
+                    return render.DataGrid(agency_df.head(100), selection_mode="row", filters=False)
             
-            
-            
-
-
-
         with ui.nav_panel("Calendar"):
-
             with ui.card():
-                
-
                 @render.data_frame
                 def sample_sales_data2():
-                        
-                    return render.DataGrid(calendar_df.head(100), selection_mode="row", filters=True)
-            
+                    return render.DataGrid(calendar_df.head(100), selection_mode="row", filters=False)
 
         with ui.nav_panel("Calendar_dates"):
-
             with ui.card():
-                
-
                 @render.data_frame
                 def sample_sales_data3():
-                        
-                    return render.DataGrid(calendar_dates_df.head(100), selection_mode="row", filters=True)
-            
-
+                    return render.DataGrid(calendar_dates_df.head(100), selection_mode="row", filters=False)
 
         with ui.nav_panel("Routes"):
-
             with ui.card():
-                
-
                 @render.data_frame
                 def sample_sales_data4():
-                        
                     return render.DataGrid(routes_df, selection_mode="row", filters=True)
-            
-
-
 
         with ui.nav_menu("Other links"):
-             with ui.nav_panel("Stops"):
-        #         "Page D content"
+            with ui.nav_panel("Stops"):
                 with ui.card():
-                    
-
                     @render.data_frame
                     def sample_sales_data5():
-                            
                         return render.DataGrid(stops_df.head(100), selection_mode="row", filters=True)
- 
-             with ui.nav_panel("Stop times"):
-        #         "Page D content"
-                with ui.card():
-                    
 
+            with ui.nav_panel("Stop times"):
+                with ui.card():
                     @render.data_frame
                     def sample_sales_data6():
-                            
                         return render.DataGrid(stop_times_df.head(100), selection_mode="row", filters=True)
-    
+
+            with ui.nav_panel("Trips"):
+                with ui.card():
+                    @render.data_frame
+                    def sample_sales_data7():
+                        return render.DataGrid(trips_df.head(100), selection_mode="row", filters=True)
 
     with ui.card():
-        ui.card_header("Sales by time of day")
-        @render.plot
-        def plot_sales_by_time():
-            df = df1
-            sales_by_hour = df['hour'].value_counts().reindex(np.arange(0,24), fill_value=0)
-
-            heatmap_data = sales_by_hour.values.reshape(24,1)
-            sns.heatmap(heatmap_data,
-                        annot=True,
-                        fmt="d",
-                        cmap="Blues",
-                        cbar=False,
-                        xticklabels=[],
-                        yticklabels=[f"{i}:00" for i in range(24)])
-            
-
-            #plt.title("Number of Orders by Hour of Day")
-            plt.xlabel("Order Count", color='#4C78A8', fontname='Arial')
-            plt.ylabel("Hour of Day", color='#4C78A8', fontname='Arial')
-
-            plt.yticks(color='#4C78A8', fontname='Arial')
-            plt.xticks(color='#4C78A8', fontname='Arial')
-
+        ui.card_header("Explanation")
 
 
 

@@ -47,12 +47,16 @@ with zipfile.ZipFile(zip_path, 'r') as zip_ref:
 
 
 routes_df = routes
+routes_df=routes_df[['route_id','agency_id','route_short_name','route_long_name']]
 calendar_df = calendar
 calendar_dates_df = calendar_dates
 agency_df = agency
 stops_df = stops
+stops_df = stops_df[['stop_id','stop_code','stop_name','stop_lat','stop_lon']]
 stop_times_df = stop_times
+stop_times_df = stop_times_df[['trip_id','arrival_time','departure_time','stop_id','stop_sequence']]
 trips_df = trips
+trips_df = trips_df[['route_id','trip_id','trip_headsign','block_id','shape_id']]
 shapes_df = shapes
 
 # Define a mapping for route_type values to their corresponding transportation modes
