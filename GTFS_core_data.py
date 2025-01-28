@@ -47,6 +47,7 @@ with zipfile.ZipFile(zip_path, 'r') as zip_ref:
 
 
 routes_df = routes
+route_df1 = routes
 routes_df=routes_df[['route_id','agency_id','route_short_name','route_long_name']]
 calendar_df = calendar
 calendar_dates_df = calendar_dates
