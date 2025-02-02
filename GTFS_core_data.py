@@ -297,7 +297,7 @@ mergedresult_df = mergedresult_df[['date','active_services']]
 mergedresult_df['date'] = pd.to_datetime(mergedresult_df['date'])
 
 
-#mergedresult_df.to_csv('Date_Classification.csv', index=False)
+
 
 Date_Classification_df = mergedresult_df
 
@@ -324,4 +324,3 @@ mergedstop_times = mergedstop_times[column_order]
 
 modified_stop_times_df = mergedstop_times
 
-#mergedstop_times.to_csv('modified_stop_times.csv', index=False)
