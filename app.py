@@ -85,21 +85,21 @@ ui.page_opts(window_title="GTFS DASHBOARD", fillable=False)
 
 
 with ui.div(class_="header-container"):
-    with ui.div(class_="logo-container"):
+    # with ui.div(class_="logo-container"):
 
-        @render.image  
-        def image():
-            here = Path(__file__).parent
-            img = {"src": here / "images/TTC-logo.png"}  
-            return img 
+    #     @render.image  
+    #     def image():
+    #         here = Path(__file__).parent
+    #         img = {"src": here / "images/TTC-logo.png"}  
+    #         return img 
 
     with ui.div(class_="title-container"):
-        ui.h2("GTFS Dashboard of Toronto")
+        ui.h2("GTFS Dashboard")
 
 ############################################
 with ui.card():
     
-    ui.card_header("General Information")
+    ui.card_header("General Information" , height="200px")
     with ui.layout_columns(col_widths={"sm": (3,3,3,3)}):
 
         with ui.value_box(
